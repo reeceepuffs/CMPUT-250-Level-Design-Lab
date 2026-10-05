@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class RoomTransition : MonoBehaviour
 {
     public string SceneToTransitionTo = "";
+    private string stringTime;
 
 
     // called when the cube hits the floor
@@ -16,9 +17,11 @@ public class RoomTransition : MonoBehaviour
 
             if(SceneToTransitionTo!=""){
                 //Get Time 
-                //TopDownUITimeBehaviour timescript = Object.FindObjectOfType<TopDownUITimeBehaviour>();
+                TopDownUITimeBehaviour timescript = Object.FindObjectOfType<TopDownUITimeBehaviour>();
+                stringTime = timescript.time.ToString();
+                PlayerPrefs.SetString("time", stringTime);
 
-                //PlayerPrefs.SetString("currentLevel", ??? );
+                PlayerPrefs.SetString("currentLevel", SceneToTransitionTo);
                 SceneManager.LoadScene(SceneToTransitionTo);
             }
         }
